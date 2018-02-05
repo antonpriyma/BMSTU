@@ -116,7 +116,7 @@ int main()
         arr[i]=(int *)malloc((siz[i]+1)*sizeof(int));
         a[i]=0;
     }
-
+gbcjc
 
     for (i=0;i<n;i++)
         for (j=0;j<siz[i];j++)
