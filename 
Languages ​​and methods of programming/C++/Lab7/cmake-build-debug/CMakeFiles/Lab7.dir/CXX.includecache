@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/anton/CLionProjects/Lab7/Shuffle.cpp
+Shuffle.h
+/home/anton/CLionProjects/Lab7/Shuffle.h
+
+/home/anton/CLionProjects/Lab7/Shuffle.h
+iostream
+-
+iosfwd
+-
+
+/home/anton/CLionProjects/Lab7/main.cpp
+iostream
+-
+Shuffle.h
+/home/anton/CLionProjects/Lab7/Shuffle.h
+
