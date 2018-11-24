@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/anton/CLionProjects/untitled4/PolarCurve.h
+vector
+-
+iostream
+-
+
+/home/anton/CLionProjects/untitled4/PolarCurveImplementation.cpp
+PolarCurve.h
+/home/anton/CLionProjects/untitled4/PolarCurve.h
+
+/home/anton/CLionProjects/untitled4/main.cpp
+stdio.h
+-
+string.h
+-
+
