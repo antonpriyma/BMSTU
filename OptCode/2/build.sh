@@ -1,0 +1,1 @@
+g++ -std=c++14 kek.cpp `llvm-config --system-libs --cppflags --ldflags --libs core` -o lel

@@ -1,0 +1,8 @@
+ TOKENS:                                                                                                                                            INT ✘  at mail ⎈  at 02:28:13 
+({{(2,1) (2,6)}} string "test") []
+({{(2,8) (2,22)}} ident asdfasdfsadfasd)
+({{(2,29) (2,35)}} number 123.123) 123123
+({{(3,1) (3,14)}} string "asdfasdfasdf") []
+({{(7,1) (7,19)}} string "12312 \ 
+ \" 	 ") [
+ \" 	]

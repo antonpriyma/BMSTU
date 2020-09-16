@@ -1,0 +1,1 @@
+g++ -std=c++14 main.cpp AST.cpp Lexer.cpp Parser.cpp `llvm-config --system-libs --cppflags --ldflags --libs core` -o bin/lul

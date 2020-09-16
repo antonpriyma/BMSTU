@@ -1,0 +1,1 @@
+g++ -g -Wall -Wextra -std=c++14 -I `gcc -print-file-name=plugin`/include -fPIC -fno-rtti -shared laba.cpp -o bin/gimple.so

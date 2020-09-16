@@ -1,0 +1,3 @@
+/Users/a.priyma/Programs/BMSTU/NumMethods/NumLab2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/a.priyma/Programs/BMSTU/NumMethods/NumLab2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/a.priyma/Programs/BMSTU/NumMethods/NumLab2/cmake-build-debug/CMakeFiles/NumLab2.dir

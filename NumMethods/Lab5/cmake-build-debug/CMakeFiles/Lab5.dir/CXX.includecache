@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/a.priyma/Programs/BMSTU/NumMethods/Lab5/main.cpp
+iostream
+-
+vector
+-
+cmath
+-
+algorithm
+-
+matrix.h
+/Users/a.priyma/Programs/BMSTU/NumMethods/Lab5/matrix.h
+
+/Users/a.priyma/Programs/BMSTU/NumMethods/Lab5/matrix.h
+iostream
+-
+vector
+-
+cmath
+-
+algorithm
+-
+

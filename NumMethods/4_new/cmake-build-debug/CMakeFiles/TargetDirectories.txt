@@ -1,0 +1,4 @@
+/Users/a.priyma/Programs/BMSTU/NumMethods/4_new/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/a.priyma/Programs/BMSTU/NumMethods/4_new/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/a.priyma/Programs/BMSTU/NumMethods/4_new/cmake-build-debug/CMakeFiles/4_new.dir
+/Users/a.priyma/Programs/BMSTU/NumMethods/4_new/cmake-build-debug/CMakeFiles/intrinsics_gen.dir

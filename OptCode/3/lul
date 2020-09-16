@@ -1,0 +1,26 @@
+; ModuleID = 'all'
+source_filename = "all"
+
+define i32 @main() {
+begin:
+  %a2 = alloca i32
+  %a = alloca i32
+  %d = alloca i32
+  store i32 13, i32* %d
+  %d1 = load i32, i32* %d
+  %addtmp = add i32 %d1, 4
+  %ifcond = icmp ne i32 %addtmp, 0
+  br i1 %ifcond, label %true, label %false
+
+true:                                             ; preds = %begin
+  store i32 5, i32* %a
+  br label %after
+
+false:                                            ; preds = %begin
+  store i32 10, i32* %a2
+  br label %after
+
+after:                                            ; preds = %false, %true
+  %a3 = load i32, i32* %a2
+  ret i32 %a3
+}

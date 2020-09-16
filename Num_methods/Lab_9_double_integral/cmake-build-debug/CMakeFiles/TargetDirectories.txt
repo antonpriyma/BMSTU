@@ -1,0 +1,3 @@
+/Users/a.priyma/Programs/BMSTU/Num_methods/Lab_9_double_integral/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/a.priyma/Programs/BMSTU/Num_methods/Lab_9_double_integral/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/a.priyma/Programs/BMSTU/Num_methods/Lab_9_double_integral/cmake-build-debug/CMakeFiles/Lab_9_double_integral.dir

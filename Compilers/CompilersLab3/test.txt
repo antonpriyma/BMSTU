@@ -1,0 +1,15 @@
+12312341234
+12312e1111
+123123.123124124  12124124
+1212412
+{- comment1 -} 3.1415 {- comment2 -}
+--singe line comment
+{- masdfasdfasdfasdfasdfasdfasdfsdaffsad
+asdf
+asdf
+asd
+fas
+df
+
+-}
+6.022e23  1.38e-23bv

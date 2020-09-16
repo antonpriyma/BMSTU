@@ -1,0 +1,1 @@
+gcc -fplugin=bin/gimple.so -O0 test.c -o test

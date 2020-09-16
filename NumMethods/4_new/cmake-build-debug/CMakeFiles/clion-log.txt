@@ -1,0 +1,6 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/a.priyma/Programs/BMSTU/NumMethods/4_new
+-- Found LLVM 10.0.0
+-- Using LLVMConfig.cmake in: /usr/local/opt/llvm/lib/cmake/llvm
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/a.priyma/Programs/BMSTU/NumMethods/4_new/cmake-build-debug
