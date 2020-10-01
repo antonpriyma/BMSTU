@@ -2,36 +2,54 @@ package main
 
 import (
 	"fmt"
+	"github.com/alex-ant/gomath/gaussian-elimination"
+	"github.com/alex-ant/gomath/rational"
 	"math"
+	"math/rand"
 	"os"
+	"time"
 )
 
 func main() {
 
-	a := Matrix{[]float64{3, -9, 3}, []float64{2, -4, 4}, []float64{1, 8, -18}}
-	b := Vector{-18, -10, 35}
+	a := make(Matrix,3)
+	b := Vector{}
+	t := make(Matrix,3)
 
-	// индекс, определяет порядок колонок в матрице
+	m := make([][]float64, 3)
+	m[0] = []float64{}
+	m[1] = []float64{}
+	m[2] = []float64{}
+
+	rand.Seed(time.Now().Unix())
+	for i := 0; i < 3; i++ {
+		for j := 0; j < 3; j++ {
+			r := rand.Float64()
+			a[i] = append(a[i], r)
+			m[i] = append(m[i], r)
+			t[i] = append(t[i], r)
+		}
+		d := rand.Float64()
+		b = append(b, d)
+		m[i] = append(m[i], d)
+	}
+
 	index := make([]int, len(a))
 	for i := range index {
 		index[i] = i
 	}
 
-	// отображаем исходные данные
 	fmt.Println("Matrix A")
-	a.dump(index)
+	//a.printMatrix(index)
 	fmt.Println("Vector B")
-	b.dump()
+	//b.printVector()
 
-	// прямой ход
-	for i := 0; i < len(a); i++ {
-
-		// главный элемент, значение по умолчанию
-		r := a[i][index[i]]
+	for i, _ := range a {
+		pivot := a[i][index[i]]
 
 		// если главный элемент равен нулю, нужно найти другой
 		// методом перестановки колонок в матрице
-		if r == 0 {
+		if pivot == 0 {
 			var kk int
 
 			// двигаемся вправо от диаганаотного элемента, для поиска максимального по модулю элемента
@@ -48,11 +66,11 @@ func main() {
 			}
 
 			// получаем главный элемента, текущей строки из диагонали
-			r = a[i][index[i]]
+			pivot = a[i][index[i]];
 		}
 
 		// если главный элемент строки равен 0, метод гаусса не работает
-		if r == 0 {
+		if pivot == 0 {
 			if b[i] == 0 {
 				fmt.Println("система имеет множество решений")
 			} else {
@@ -61,52 +79,63 @@ func main() {
 			os.Exit(1)
 		}
 
-		// деление элементов текущей строки, на главный элемент
 		for j := 0; j < len(a[i]); j++ {
-			a[i][index[j]] /= r
+			a[i][index[j]] /= pivot
 		}
-		b[i] /= r
+		b[i] /= pivot
 
-		// вычитание текущей строки из всех ниже расположенных строк с занулением I - ого элемента в каждой из них
 		for k := i + 1; k < len(a); k++ {
-			r = a[k][index[i]]
+			pivot = a[k][index[i]]
 			for j := 0; j < len(a[i]); j++ {
-				a[k][index[j]] = a[k][index[j]] - a[i][index[j]]*r
+				a[k][index[j]] = a[k][index[j]] - a[i][index[j]]*pivot
 			}
-			b[k] = b[k] - b[i]*r
+			b[k] = b[k] - b[i]*pivot
 		}
 
-		// отображаем дамп матрицы A и вектора B
-		fmt.Println("++++++++++++\n")
 		fmt.Println("Matrix A")
-		a.dump(index)
+		//a.printMatrix(index)
 		fmt.Println("Vector B")
-		b.dump()
+		//b.printVector()
 	}
 
-	var x Vector = make(Vector, len(b))
+	x := make(Vector, len(b))
 
-	// обратный ход
 	for i := len(a) - 1; i >= 0; i-- {
-		// Задается начальное значение элемента x[I].
 		x[i] = b[i]
 
-		// Корректируется искомое значение x[I].
-		// В цикле по J от I+1 до N (в случае, когда I=N, этот шаг не выполняется) производятся вычисления x[I]:=  x[I] - x[J]* A[I, J].
 		for j := i + 1; j < len(a); j++ {
 			x[i] = x[i] - (x[j] * a[i][index[j]])
 		}
 	}
 
-	fmt.Println("++++++++++++\n")
 	fmt.Println("Vector X")
 	for i := 0; i < len(x); i++ {
 		fmt.Printf("[%v] ", x[index[i]])
 	}
 	fmt.Println()
+
+
+	checkResult(t, x)
+
+	m2 := make([][]rational.Rational, len(m))
+	for i, iv := range m {
+		mr := make([]rational.Rational, len(m[i]))
+		for j, jv := range iv {
+			mr[j], _ = rational.NewFromFloat(jv)
+		}
+		m2[i] = mr
+	}
+
+	res, _ := gaussian.SolveGaussian(m2, false)
+
+	fmt.Println()
+	for _, elem := range res {
+		fmt.Print(elem[0].Float64())
+		fmt.Println()
+	}
 }
 
-func (m Matrix) dump(index []int) {
+func (m Matrix) printMatrix(index []int) {
 	for i := range m {
 		for j := range m[i] {
 			if m[i][index[j]] == 0 {
@@ -120,12 +149,30 @@ func (m Matrix) dump(index []int) {
 	fmt.Println()
 }
 
-func (v Vector) dump() {
-
+func (v Vector) printVector() {
 	for i := 0; i < len(v); i++ {
 		fmt.Printf("[%v] ", v[i])
 	}
 
 	fmt.Println()
 	fmt.Println()
+}
+
+func checkResult(m Matrix, v Vector) bool {
+
+	var max float64
+	if len(v) > 0 {
+		for i, _ := range m {
+			row := m[i]
+			correct_answ := row[len(row)-1]
+			row = row[:len(row)-1]
+			if max < math.Abs(math.Abs(v.Scalar(row)) - correct_answ){
+				max = math.Abs(math.Abs(v.Scalar(row)) - correct_answ)
+			}
+		}
+	}
+
+	fmt.Println("max: ",max)
+
+	return true
 }

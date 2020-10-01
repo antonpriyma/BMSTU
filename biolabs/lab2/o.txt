@@ -1,0 +1,4 @@
+seq1: AA
+seq2: AA
+
+Score: 2
