@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/AntonPriyma/MathMethods/models"
 	"github.com/alex-ant/gomath/gaussian-elimination"
 	"github.com/alex-ant/gomath/rational"
 	"math"
@@ -12,9 +13,9 @@ import (
 
 func main() {
 
-	a := make(Matrix,3)
-	b := Vector{}
-	t := make(Matrix,3)
+	a := make(models.Matrix,3)
+	b := models.Vector{}
+	t := make(models.Matrix,3)
 
 	m := make([][]float64, 3)
 	m[0] = []float64{}
@@ -54,7 +55,7 @@ func main() {
 
 			// двигаемся вправо от диаганаотного элемента, для поиска максимального по модулю элемента
 			for k := i; k < len(a); k++ {
-				if math.Abs(a[i][index[k]]) > r {
+				if math.Abs(a[i][index[k]]) > pivot {
 					kk = k
 				}
 			}
@@ -98,7 +99,7 @@ func main() {
 		//b.printVector()
 	}
 
-	x := make(Vector, len(b))
+	x := make(models.Vector, len(b))
 
 	for i := len(a) - 1; i >= 0; i-- {
 		x[i] = b[i]
@@ -135,7 +136,7 @@ func main() {
 	}
 }
 
-func (m Matrix) printMatrix(index []int) {
+func (m models.Matrix) printMatrix(index []int) {
 	for i := range m {
 		for j := range m[i] {
 			if m[i][index[j]] == 0 {
@@ -149,7 +150,7 @@ func (m Matrix) printMatrix(index []int) {
 	fmt.Println()
 }
 
-func (v Vector) printVector() {
+func (v models.Vector) printVector() {
 	for i := 0; i < len(v); i++ {
 		fmt.Printf("[%v] ", v[i])
 	}
@@ -158,7 +159,7 @@ func (v Vector) printVector() {
 	fmt.Println()
 }
 
-func checkResult(m Matrix, v Vector) bool {
+func checkResult(m models.Matrix, v models.Vector) bool {
 
 	var max float64
 	if len(v) > 0 {
