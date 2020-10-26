@@ -1,0 +1,22 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <EditTextPreference
+        android:key="days_limit"
+        android:title="Количество дней"
+        android:defaultValue="10"
+        android:dialogTitle="Введите количество дней"
+        />
+
+   <ListPreference
+       android:key="value"
+       android:title="Валюта"
+       android:defaultValue="USD"
+       android:entries="@array/values"
+       android:entryValues="@array/values"
+       android:dialogTitle="Выберете вылюту"
+       />
+
+</PreferenceScreen>

@@ -1,0 +1,69 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileOptions {
+        targetCompatibility = "8"
+        sourceCompatibility = "8"
+    }
+
+    compileSdkVersion rootProject.ext.compile_sdk_version
+
+    defaultConfig {
+        applicationId "${rootProject.ext.application_id}"
+        minSdkVersion rootProject.ext.mini_sdk_version
+        targetSdkVersion rootProject.ext.target_sdk_version
+        versionCode rootProject.ext.version_code
+        versionName rootProject.ext.version_name
+        testInstrumentationRunner rootProject.ext.test_runner
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "mode"
+
+    productFlavors {
+        def DEVELOPMENT_ENDPOINT = "https://api.rss2json.com/v1/"
+        development {
+            dimension "mode"
+            buildConfigField "String", "ENDPOINT", "\"" + DEVELOPMENT_ENDPOINT + "\""
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.google.dagger:dagger:${rootProject.ext.dagger2_vesion}"
+    implementation "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxjava2_version}"
+    implementation "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxandroid_version}"
+    implementation "androidx.appcompat:appcompat:${rootProject.ext.androidx_version}"
+    implementation "androidx.recyclerview:recyclerview:${rootProject.ext.androidx_version}"
+    implementation "androidx.constraintlayout:constraintlayout:${rootProject.ext.constraint_layout_version}"
+
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofit2_version}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.retrofit2_version}"
+
+    implementation "com.google.dagger:dagger:${rootProject.ext.dagger2_vesion}"
+    implementation 'androidx.preference:preference:1.1.0-rc01'
+    kapt "com.google.dagger:dagger-compiler:${rootProject.ext.dagger2_vesion}"
+
+    implementation "com.google.code.gson:gson:${rootProject.ext.gson_version}"
+    implementation "com.squareup.okhttp3:logging-interceptor:3.8.0"
+    implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofit2_version}"
+    testImplementation "junit:junit:${rootProject.ext.junit_version}"
+    testImplementation "org.powermock:powermock-module-junit4:${rootProject.ext.powermock_version}"
+    testImplementation "org.powermock:powermock-api-mockito2:${rootProject.ext.powermock_version}"
+    testImplementation "org.mockito:mockito-core:${rootProject.ext.mockito_version}"
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.0.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.0.0'
+}

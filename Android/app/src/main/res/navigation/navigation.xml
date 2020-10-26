@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation"
+    app:startDestination="@id/conversionActivity">
+
+    <activity
+        android:id="@+id/conversionActivity"
+        android:name="com.example.exchanger.ui.conversion.ConversionActivity"
+        android:label="ConversionActivity">
+    <action
+        android:id="@+id/action_convActivity_toSessings"
+        app:destination="@id/settingsActivity" />
+    </activity>
+    <activity
+        android:id="@+id/settingsActivity"
+        android:name="com.example.exchanger.ui.conversion.SettingsActivity"
+        android:label="SettingsActivity" />
+</navigation>

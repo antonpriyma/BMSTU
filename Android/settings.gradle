@@ -1,0 +1,5 @@
+rootProject.name='EXCHANGER'
+include ':app'
+include ':data'
+include ':domain'
+include ':repo'
