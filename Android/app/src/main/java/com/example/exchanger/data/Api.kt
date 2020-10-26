@@ -8,13 +8,13 @@ import retrofit2.http.Query
 @JvmSuppressWildcards
 interface Api {
     @GET("data/v2/histoday")
-    fun getConversions(@Query("fsym") fromType: FromType, @Query("tsym") toType: ToType): Single<Response>
+    fun getConversions(@Query("limit") limit: Int, @Query("fsym") fromType: FromType, @Query("tsym") toType: ToType): Single<Response>
 }
 
 
 // TODO: remove duplicate code
 enum class FromType(var type: String){
-    BTC("BTC")
+    BTC("BTC"), ETH("ETH")
 }
 
 enum class ToType(var type: String){

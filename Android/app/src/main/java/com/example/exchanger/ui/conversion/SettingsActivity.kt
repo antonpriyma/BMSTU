@@ -34,12 +34,13 @@ class SettingsActivity : AppCompatActivity() {
 
         private val sBindPreferenceSummaryToValueListener =
             Preference.OnPreferenceChangeListener { preference, value ->
+                var res: Boolean = true
                 if (preference.key == "days_limit") {
-                    value.toString() != "" && value.toString().matches(Regex("\\d*"))
+                   res = value.toString() != "" && value.toString().matches(Regex("\\d*"))
                 }
 
 
-                true
+                res
             }
 
 

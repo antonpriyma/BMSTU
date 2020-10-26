@@ -6,13 +6,5 @@
     <activity
         android:id="@+id/conversionActivity"
         android:name="com.example.exchanger.ui.conversion.ConversionActivity"
-        android:label="ConversionActivity">
-    <action
-        android:id="@+id/action_convActivity_toSessings"
-        app:destination="@id/settingsActivity" />
-    </activity>
-    <activity
-        android:id="@+id/settingsActivity"
-        android:name="com.example.exchanger.ui.conversion.SettingsActivity"
-        android:label="SettingsActivity" />
+        android:label="ConversionActivity"/>
 </navigation>

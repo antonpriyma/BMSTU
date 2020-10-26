@@ -5,14 +5,13 @@ import android.preference.PreferenceManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.navigation.findNavController
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import com.antonpriyma.android.exchanger.domain.conversion.models.Conversion
 import com.example.exchanger.R
-import com.example.exchanger.data.FromType
-import com.example.exchanger.data.ToType
+import com.example.exchanger.mvp.CleanActivity
 import com.example.exchanger.ui.App
 import com.example.exchanger.ui.conversion.di.component.DaggerConversionComponent
-import com.example.exchanger.mvp.CleanActivity
 import kotlinx.android.synthetic.main.activity_conversions.*
 
 class ConversionActivity : CleanActivity<ConversionPresenter>(), ConversionView {
@@ -32,6 +31,34 @@ class ConversionActivity : CleanActivity<ConversionPresenter>(), ConversionView 
             setHasFixedSize(true)
             layoutManager =
                 androidx.recyclerview.widget.LinearLayoutManager(this@ConversionActivity)
+        }
+
+
+        crypto_value.setSelection(
+            PreferenceManager.getDefaultSharedPreferences(this).getInt("crypto_selected", 0)
+        )
+
+        crypto_value.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                val selectedItem = parent.getItemAtPosition(position).toString()
+                val prefs = PreferenceManager.getDefaultSharedPreferences(view.context)
+                prefs.edit().putString("crypto_value", selectedItem).apply()
+                prefs.edit().putInt("crypto_selected", position).apply()
+                presenter.update(
+                    prefs.getString("days_limit", "10").toInt(),
+                    prefs.getString("value", ""),
+                    prefs.getString("crypto_value", "BTC")
+                )
+            } // to close the onItemSelected
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
         }
     }
 
@@ -61,7 +88,11 @@ class ConversionActivity : CleanActivity<ConversionPresenter>(), ConversionView 
         return when (item.itemId) {
             R.id.update -> {
                 val prefs = PreferenceManager.getDefaultSharedPreferences(this)
-                presenter.update(prefs.getInt("days_limt", 10), prefs.getString("value", ""))
+                presenter.update(
+                    prefs.getString("days_limit", "10").toInt(),
+                    prefs.getString("value", ""),
+                    prefs.getString("crypto_value", "BTC")
+                )
                 return true
             }
             R.id.settings -> {

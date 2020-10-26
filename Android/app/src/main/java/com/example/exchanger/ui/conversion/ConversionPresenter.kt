@@ -14,7 +14,7 @@ class ConversionPresenter @Inject constructor(private val getConversionsListUsec
         getView()?.initialiseView()
         getView()?.showProgress()
         var list: List<ToType> = listOf(ToType.EUR)
-        getConversionsListUsecase.execute(ConversionListObserver(this), Params(fromType = FromType.BTC, toTypes = list))
+        getConversionsListUsecase.execute(ConversionListObserver(this), Params(days = 10, fromType = FromType.BTC, toTypes = list))
     }
 
     override fun disposeSubscriptions() {
@@ -26,7 +26,7 @@ class ConversionPresenter @Inject constructor(private val getConversionsListUsec
         getView()?.showArticleList(articlesList)
     }
 
-    fun update(limit: Int, toType: String) {
+    fun update(limit: Int, toType: String, crypto: String) {
         getView()?.hideConversions()
         getView()?.showProgress()
 
@@ -42,7 +42,17 @@ class ConversionPresenter @Inject constructor(private val getConversionsListUsec
                 converted = ToType.RUB
             }
         }
+
+        var fromType: FromType = FromType.BTC
+        when (crypto) {
+            "BTC" -> {
+                fromType = FromType.BTC
+            }
+            "ETH" -> {
+                fromType = FromType.ETH
+            }
+        }
         var list: List<ToType> = listOf(converted)
-        getConversionsListUsecase.execute(ConversionListObserver(this), Params(fromType = FromType.BTC, toTypes = list))
+        getConversionsListUsecase.execute(ConversionListObserver(this), Params(days = limit, fromType = fromType, toTypes = list))
     }
 }

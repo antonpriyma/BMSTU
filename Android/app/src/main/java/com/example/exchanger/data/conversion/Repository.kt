@@ -6,5 +6,5 @@ import com.example.exchanger.data.ToType
 import io.reactivex.Single
 
 interface Repository {
-    fun getConversions(fromType: FromType, toTypes: List<ToType>): Single<List<Conversion>>
+    fun getConversions(days: Int, fromType: FromType, toTypes: List<ToType>): Single<List<Conversion>>
 }

@@ -11,10 +11,11 @@ import javax.inject.Inject
 
 class Repository @Inject constructor(private val api: Api) : Repository {
     override fun getConversions(
+        days: Int,
         fromType: FromType,
         toTypes: List<ToType>
     ): Single<List<Conversion>> {
-        var conv = api.getConversions(fromType, toTypes[0])
+        var conv = api.getConversions(days, fromType, toTypes[0])
         return conv.map { it.data?.data }
     }
 }
