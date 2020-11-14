@@ -1,6 +1,8 @@
 package com.example.exchanger.ui.conversion
 
 import android.content.Intent
+import android.content.SharedPreferences
+import android.preference.Preference
 import android.preference.PreferenceManager
 import android.view.Menu
 import android.view.MenuItem
@@ -60,6 +62,7 @@ class ConversionActivity : CleanActivity<ConversionPresenter>(), ConversionView 
 
             }
         }
+
     }
 
     override fun hideConversions() {
@@ -83,6 +86,8 @@ class ConversionActivity : CleanActivity<ConversionPresenter>(), ConversionView 
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
+
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
