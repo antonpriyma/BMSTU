@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"math"
+	"math/rand"
 )
 
 //type Vector struct {
@@ -84,10 +85,10 @@ func (v Vector) Norm() float64 {
 }
 
 func (v Vector) NormNew() float64 {
-	return v.max()
+	return v.Max()
 }
 
-func (v Vector) max() float64 {
+func (v Vector) Max() float64 {
 	var max float64
 	max = math.Abs(v[0])
 	for _, x := range v{
@@ -120,4 +121,23 @@ func (v Vector) SumElems() float64 {
 	}
 
 	return sum
+}
+
+func RandomVector(n int) Vector {
+	v := make(Vector, n)
+
+	for i := 0; i < n; i++ {
+		v[i] = rand.Float64()
+	}
+
+	return v
+}
+
+func (v Vector) printVector() {
+	for i := 0; i < len(v); i++ {
+		fmt.Printf("[%v] ", v[i])
+	}
+
+	fmt.Println()
+	fmt.Println()
 }

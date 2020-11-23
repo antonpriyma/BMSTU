@@ -8,13 +8,17 @@ import com.example.exchanger.domain.conversion.Params
 import com.example.exchanger.mvp.CleanPresenter
 import javax.inject.Inject
 
-class ConversionPresenter @Inject constructor(private val getConversionsListUsecase: GetConversionsListUsecase) : CleanPresenter<ConversionView>() {
+class ConversionPresenter @Inject constructor(private val getConversionsListUsecase: GetConversionsListUsecase) :
+    CleanPresenter<ConversionView>() {
 
     override fun initialise() {
         getView()?.initialiseView()
         getView()?.showProgress()
         var list: List<ToType> = listOf(ToType.EUR)
-        getConversionsListUsecase.execute(ConversionListObserver(this), Params(days = 10, fromType = FromType.BTC, toTypes = list))
+        getConversionsListUsecase.execute(
+            ConversionListObserver(this),
+            Params(days = 10, fromType = FromType.BTC, toTypes = list)
+        )
     }
 
     override fun disposeSubscriptions() {
@@ -26,9 +30,16 @@ class ConversionPresenter @Inject constructor(private val getConversionsListUsec
         getView()?.showArticleList(articlesList)
     }
 
-    fun update(limit: Int, toType: String, crypto: String) {
+    fun update(limit: Int?, toType: String, crypto: String) {
         getView()?.hideConversions()
         getView()?.showProgress()
+
+        var newLimit: Int
+        if (limit == null) {
+            newLimit = 10
+        } else {
+            newLimit = limit
+        }
 
         var converted: ToType = ToType.EUR
         when (toType) {
@@ -53,6 +64,9 @@ class ConversionPresenter @Inject constructor(private val getConversionsListUsec
             }
         }
         var list: List<ToType> = listOf(converted)
-        getConversionsListUsecase.execute(ConversionListObserver(this), Params(days = limit, fromType = fromType, toTypes = list))
+        getConversionsListUsecase.execute(
+            ConversionListObserver(this),
+            Params(days = newLimit, fromType = fromType, toTypes = list)
+        )
     }
 }
