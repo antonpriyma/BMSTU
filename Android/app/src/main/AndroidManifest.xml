@@ -11,10 +11,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:textAppearance="@style/TextAppearance.Shrine.Title"
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.conversion.SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings"
+            android:textAppearance="@style/TextAppearance.Shrine.Title"></activity>
         <activity android:name=".ui.conversion.ConversionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

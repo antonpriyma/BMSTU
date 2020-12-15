@@ -1,5 +1,7 @@
 package com.example.exchanger.ui.conversion
 
+import android.content.Intent
+import android.net.Uri
 import android.preference.PreferenceManager
 import android.view.Menu
 import android.view.MenuInflater
@@ -31,6 +33,12 @@ class ConversionFragment : CleanFragment<ConversionPresenter>(), ConversionView 
         crypto_value.setSelection(
             PreferenceManager.getDefaultSharedPreferences(context).getInt("crypto_selected", 0)
         )
+
+        url.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(v: View?) {
+                val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://coinmarketcap.com/ru/"))
+                startActivity(i)
+            }})
 
         crypto_value.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
