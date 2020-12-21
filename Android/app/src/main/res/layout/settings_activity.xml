@@ -5,5 +5,8 @@
     <FrameLayout
         android:id="@+id/settings_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:textAppearance="@style/TextAppearance.Shrine.Title"
+        android:backgroundTint="@color/colorAccent"
+        />
 </LinearLayout>

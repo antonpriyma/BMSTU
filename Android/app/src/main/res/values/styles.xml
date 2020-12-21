@@ -1,14 +1,35 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar.Bridge">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorOnBackground">#212121</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="materialCardViewStyle">@style/AppCard</item>
+    </style>
+
+    <style name="TextAppearance.Shrine.Title" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="Button_me" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="rippleColor">@color/background</item>
+
+    </style>
+
+    <style name="AppCard" parent="Widget.MaterialComponents.CardView">
+        <item name="cardElevation">8dp</item>
     </style>
 
     <style name="AppToolBarTheme">
-        <item name="colorControlNormal">#FFFFFF</item>
+        <item name="colorControlNormal">@color/textColorAcent</item>
     </style>
+
+    <color name="background">#DFDABF</color>
 </resources>

@@ -2,6 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/url"
+        android:layout_width="wrap_content"
+        android:autoLink="web"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/crypto_value"
+        android:text="show more"
+        style="@style/Button_me" />
 
     <Spinner
         android:id="@+id/crypto_value"
@@ -11,9 +20,10 @@
         android:entries="@array/crypto_values" />
 
 
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_below="@id/crypto_value"
+        android:layout_below="@id/url"
         android:fillViewport="true"
         android:id="@+id/scroll"
         android:layout_height="670dp">
@@ -37,15 +47,6 @@
         android:layout_centerInParent="true"
         android:visibility="invisible" />
 
-    <TextView
-        android:id="@+id/url"
-        android:layout_width="wrap_content"
-        android:autoLink="web"
-        android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/scroll"
-        android:text="https://coinmarketcap.com/ru/"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
 
 
 </RelativeLayout>
