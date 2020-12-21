@@ -5,7 +5,7 @@ buildscript {
     repositories {
         google()
         jcenter()
-        
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.6.1'
@@ -20,7 +20,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+
     }
     ext {
         application_id = "io.github.patrickyin.cleanarchitecture"
@@ -49,4 +49,25 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+signingConfigs {
+    debug { /* здесь никаких изменений нет */ }
+    release {
+        if (project.hasProperty("Keys.repo")) {
+            def projectPropsFile = file(project.property("Keys.repo") + "/exchanger.properties")
+            if (projectPropsFile.exists()) {
+                Properties props = new Properties()
+                props.load(new FileInputStream(projectPropsFile))
+                storeFile file(file(project.property("Keys.repo") + props['RELEASE_STORE_FILE']))
+                storePassword props['RELEASE_STORE_PASS']
+                keyAlias props['RELEASE_ALIAS']
+                keyPassword props['RELEASE_KEY_PASS']
+            }
+        } else {
+            println "======================================================="
+            println "[ERROR] - Please configure release-compilation environment - e.g. in ~/.signing directory"
+            println "======================================================="
+        }
+    }
 }
