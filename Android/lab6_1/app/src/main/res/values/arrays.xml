@@ -1,0 +1,12 @@
+<resources>
+
+    <string-array name="notifications_entries">
+        <item>allow all notifications</item>
+        <item>no notifications</item>
+    </string-array>
+
+    <string-array name="notifications_values">
+        <item>notifications</item>
+        <item>not_notifications</item>
+    </string-array>
+</resources>

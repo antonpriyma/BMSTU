@@ -1,0 +1,38 @@
+<PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:title="@string/section_1">
+
+        <EditTextPreference
+            app:key="name"
+            app:title="@string/name_title"
+            app:useSimpleSummaryProvider="true"/>
+
+        <ListPreference
+            app:key="notifications"
+            app:title="@string/notifications_title"
+            app:entries="@array/notifications_entries"
+            app:entryValues="@array/notifications_values"
+            app:defaultValue="notifications"
+            app:useSimpleSummaryProvider="true"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/section_2">
+
+        <SwitchPreferenceCompat
+            app:key="send"
+            app:title="@string/send_title"/>
+
+        <SwitchPreferenceCompat
+            app:key="attachment"
+            app:title="@string/attachment_title"
+            app:summaryOn="@string/attachment_summary_on"
+            app:summaryOff="@string/attachment_summary_off"
+            app:dependency="send"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

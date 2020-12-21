@@ -5,16 +5,26 @@ import (
 	"fmt"
 	"github.com/AntonPriyma/MathMethods/models"
 	"math"
+	"time"
 )
 
 var ATOL = 1e-12 // 0.00000000000000001
-var A = models.Matrix{
-	{10., -1., 2., 0.},
-	{-1., 11., -1., 3.},
-	{2., -1., 10., -1.},
-	{0.0, 3., -1., 8.},
-}
+//var A = models.Matrix{
+//	{10., -1., 2., 0.},
+//	{-1., 11., -1., 3.},
+//	{2., -1., 10., -1.},
+//	{0.0, 3., -1., 8.},
+//}
+
 var b = models.Vector{6., 25., -11., 15.}
+//
+//var A = models.Matrix{
+//	{1., -1., 2., 0.},
+//	{-1., 1., -1., 3.},
+//	{2., -1., 1., -1.},
+//	{0.0, 3., -1., 8.},
+
+
 
 func scalarProduct(vec1, vec2 []float64) (float64, error) {
 	if len(vec2) != len(vec1) {
@@ -188,19 +198,26 @@ func Gauss(a models.Matrix, b models.Vector) models.Vector {
 }
 
 func main() {
-	//n := 1000
-	//var A = models.RandomMatrix(n)
-	//var b = models.RandomVector(n)
+	n := 1000
+	var A = models.RandomMatrix(n)
+	var b = models.RandomVector(n)
 
+	timeS := time.Now()
 	x := jacobiMethod(A, b)
+	fmt.Println("Time spent: ", time.Now().Sub(timeS))
 	//fmt.Println("Solution:", x)
+
 	absoluteError(x, b, A)
 
+	timeS = time.Now()
 	x = seideliMethod(A, b)
+	fmt.Println("Time spent: ", time.Now().Sub(timeS))
 	//fmt.Println("Solution:", x)
 	absoluteError(x, b, A)
 
+	timeS = time.Now()
 	x = Gauss(A, b)
+	fmt.Println("Time spent: ", time.Now().Sub(timeS))
 	absoluteError(x, b, A)
 
 }

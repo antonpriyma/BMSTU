@@ -61,6 +61,16 @@ func (v Vector) Scalar(a Vector) (res float64) {
 }
 
 
+
+func (v Vector) ScalarFloat(m float64) (res Vector) {
+
+	for i, _ := range v {
+		v[i] += v[i] * m
+	}
+
+	return v
+}
+
 func (v Vector) Sum(v1 Vector) Vector {
 	if len(v) != len(v1) {
 		fmt.Println("Wrong vector size")

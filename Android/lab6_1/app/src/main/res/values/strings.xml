@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">lab6_1</string>
+    <string name="action_settings">Settings</string>
+    <string name="first_fragment_label">First Fragment</string>
+
+
+    <string name="hello_first_fragment">first fragment</string>
+
+    <string name="section_1">section 1</string>
+    <string name="section_2">Section 2</string>
+
+
+    <string name="name_title">Your name</string>
+    <string name="notifications_title">Default notifications action</string>
+
+
+    <string name="send_title">Send data to developers often</string>
+    <string name="attachment_title">Download incoming updates</string>
+    <string name="attachment_summary_on">Automatically download updates from developers
+    </string>
+    <string name="attachment_summary_off">Only download updates when manually requested</string>
+</resources>
