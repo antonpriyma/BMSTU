@@ -1,0 +1,4 @@
+seq1: AGTACGCA
+seq2: --TATGC-
+
+Score: 1

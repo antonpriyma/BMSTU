@@ -1,0 +1,4 @@
+seq1: TACGC
+seq2: TATGC
+
+Score: 3

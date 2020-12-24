@@ -1,0 +1,3 @@
+seq1: ATGGG-A--
+seq2: A-GGGTAGG
+

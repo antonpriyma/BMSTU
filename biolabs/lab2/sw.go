@@ -35,7 +35,7 @@ func (sw *SWData) fill(a, b string) ([][]item, int, int) {
 	jmax := 0
 	for i := 1; i < len(a)+1; i++ {
 		for j := 1; j < len(b)+1; j++ {
-			cur := max(res[i-1][j-1].value+sw.Scores(a[i], b[j]), res[i-1][j].value+sw.Gap, res[i][j-1].value+sw.Gap, 0)
+			cur := max(res[i-1][j-1].value+sw.Scores(a[i-1], b[j-1]), res[i-1][j].value+sw.Gap, res[i][j-1].value+sw.Gap, 0)
 			res[i][j] = item{value: cur}
 			switch cur {
 			case res[i-1][j-1].value + sw.Scores(a[i-1], b[j-1]):
@@ -47,7 +47,7 @@ func (sw *SWData) fill(a, b string) ([][]item, int, int) {
 			default:
 				res[i][j].direction = zero
 			}
-			if res[i][j].value >= mx {
+			if res[i][j].value > mx {
 				mx = res[i][j].value
 				imax = i
 				jmax = j
